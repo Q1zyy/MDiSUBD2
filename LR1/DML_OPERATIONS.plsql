@@ -1,0 +1,42 @@
+CREATE OR REPLACE PROCEDURE MY_INSERT(input_value IN NUMBER) IS
+BEGIN
+    INSERT INTO MyTable (val)
+    VALUES (input_value);
+    COMMIT; 
+    DBMS_OUTPUT.PUT_LINE('Insert completed: ' || input_value);
+END my_insert;
+/
+
+SELECT * FROM MYTABLE;
+
+EXEC MY_INSERT(4);
+
+CREATE OR REPLACE PROCEDURE MY_UPDATE(update_id IN NUMBER, update_val IN NUMBER) IS
+BEGIN
+    
+    UPDATE MyTable
+    SET val = update_val
+    WHERE id = update_id;
+    COMMIT; 
+
+    DBMS_OUTPUT.PUT_LINE('UPDATE COMPLETED');
+
+
+END MY_UPDATE;
+/
+
+EXEC MY_UPDATE(4, 52);
+SELECT * FROM MYTABLE;
+
+
+CREATE OR REPLACE PROCEDURE MY_DELETE(update_id IN NUMBER) IS
+BEGIN
+    DELETE FROM MyTable
+    WHERE id = update_id;
+    
+    COMMIT; 
+END MY_DELETE;
+/
+
+EXEC MY_DELETE(2);
+SELECT * FROM MYTABLE;
